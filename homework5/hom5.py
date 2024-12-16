@@ -1,19 +1,20 @@
-sum = 0
-while(True):
-    f = False
-    x = input("Введите цифру, или stop/end для выхода из цикла:")
-    if x == "stop" or x == "end":
-        print("Сумма всех ранее ввёденных значений:", sum)
-        break
+x = ""
+
+def transfer(i):
+    global x
+    if i == 0:
+        return 0
     else:
-        for i in x:
-            if i == ".":
-                continue
-            elif i.isdigit() == False:
-                print("Неверный ввод!")
-                f = True
-                continue
-        if f == False:
-            sum += float(x)
+        transfer(i // 13)
+        g = i % 13
+        if g < 10:
+            x += str(g)
         else:
-            f == False
+            if i % 13 == 10:   
+                x += str("A")
+            elif i % 13 == 11:
+                x += str("B")
+            else:
+                x += str("C")
+transfer(int(input("Введите цифру: ")))
+print("Результат перевода в тринадцатеричную систему: ", x)
